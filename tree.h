@@ -11,7 +11,7 @@ public:
 	Tree(Node* root);
 	~Tree();
 
-	void insert(Node*& n, int x, int& counter);  //insereaza un nod in copac
+	void insert(Node*& n, int x);  //insereaza un nod in copac
 	void suchen(Node*& k, Node*& foundk, int x);  //cauta un nod in copac
 	void deleteN(Node*& c, int k);  //sterge un nod din copac
 	void cmmd(Node*& c, Node*& f);  //socoteste pe care dintre noduri il 
