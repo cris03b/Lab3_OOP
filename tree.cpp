@@ -1,6 +1,3 @@
-// lab3.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include "node.h"
 #include "tree.h"
 #include <iostream>
@@ -8,21 +5,21 @@
 using namespace std;
 
 Tree::Tree() {
-	this->root = NULL;
+	this->root = NULL;  //radacina copacului
 }
 
 Tree::Tree(Node* root) {
-	this->root = root;
+	this->root = root;  //constructor care atribuie o valoare radacinii
 }
 
 
 Tree::~Tree() {
-	delete this->root;
+	delete this->root;  //destructor
 }
 
 
-void Tree::insert(Node*& n, int x, int &counter) {
-	//n = this->root
+void Tree::insert(Node*& n, int x, int& counter) {
+	//insereaza un nod in copac
 	if (n) {
 
 		if (n->val == x) {
@@ -46,6 +43,7 @@ void Tree::insert(Node*& n, int x, int &counter) {
 }
 
 void Tree::suchen(Node*& k, Node*& foundk, int x) {
+	//cauta un nod in copac
 	if (k) {
 		if (k->val > x) {
 			suchen(k->ln, foundk, x);
@@ -63,6 +61,9 @@ void Tree::suchen(Node*& k, Node*& foundk, int x) {
 }
 
 void Tree::cmmd(Node*& c, Node*& f) {
+	//socoteste pe care dintre noduri il 
+	//pune, in caz ca se sterge un nod important
+	//(care are mai multe legaturi)
 	Node* aux;
 	if (f->rn)
 		cmmd(c, f->rn);
@@ -70,11 +71,12 @@ void Tree::cmmd(Node*& c, Node*& f) {
 		c->val = f->val;
 		aux = f;
 		f = f->ln;
-		delete aux;
+		free(aux);
 	}
 }
 
 void Tree::deleteN(Node*& c, int k) {
+	//sterge un nod din copac
 	Node* f;
 	if (c) {
 		if (c->val == k)
@@ -116,6 +118,7 @@ void Tree::deleteN(Node*& c, int k) {
 }
 
 void Tree::inorder(Node* k) {
+	//parcurgerea stanga, radacina, dreapta
 	if (k != 0)
 	{
 		inorder(k->ln);
@@ -125,6 +128,7 @@ void Tree::inorder(Node* k) {
 }
 
 void Tree::preorder(Node* k) {
+	//parcurgerea radacina, stanga, dreapta
 	if (k != 0)
 	{
 		cout << k->val << ' ';
@@ -133,8 +137,8 @@ void Tree::preorder(Node* k) {
 	}
 }
 
-void Tree::postorder(Node* k)
-{
+void Tree::postorder(Node* k) {
+	//parcurgerea stanga, dreapta, radacina
 	if (k != 0)
 	{
 		postorder(k->ln);
@@ -144,6 +148,7 @@ void Tree::postorder(Node* k)
 }
 
 int Tree::countNodes(Node* n, int count) {
+	//numara nodurile din copac
 	if (n->ln == 0 && n->rn == 0) {
 		return 1;
 	}
@@ -159,24 +164,24 @@ int Tree::countNodes(Node* n, int count) {
 }
 
 int Tree::countEdges(Node* n) {
+	//numara legaturile dintre nodurile din copac
 	return countNodes(n, 1) - 1;
 
 }
 
-int Tree::height(Node* node)
-{
+int Tree::height(Node* node) {
+	//socoteste inaltimea copacului
 	if (node == 0)
 		return 0;
 	else
 	{
-		
+
 		int left = height(node->ln);
 		int right = height(node->rn);
 
-		
+
 		if (left > right)
 			return(left + 1);
 		else return(right + 1);
 	}
 }
-

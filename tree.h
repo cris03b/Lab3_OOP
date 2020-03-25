@@ -4,24 +4,24 @@
 
 class Tree {
 public:
-	
-	// int bin_tree[100]; // vector noduri din binary tree
-	// int counter; // nr noduri
 
 	Node* root; // nodul radacina
+	
 	Tree();
 	Tree(Node* root);
 	~Tree();
 
-	void insert(Node*& n, int x, int& counter);
-	void suchen(Node*& k, Node*& foundk, int x);
-	void deleteN(Node*& c, int k);
-	void cmmd(Node*& c, Node*& f);
-	void inorder(Node* k);
-	void preorder(Node* k);
-	void postorder(Node* k);
+	void insert(Node*& n, int x, int& counter);  //insereaza un nod in copac
+	void suchen(Node*& k, Node*& foundk, int x);  //cauta un nod in copac
+	void deleteN(Node*& c, int k);  //sterge un nod din copac
+	void cmmd(Node*& c, Node*& f);  //socoteste pe care dintre noduri il 
+									//pune, in caz ca se sterge un nod important
+									//(care are mai multe legaturi)
+	void inorder(Node* k);  //parcurgerea stanga, radacina, dreapta
+	void preorder(Node* k);  //parcurgerea radacina, stanga, dreapta
+	void postorder(Node* k);  //parcurgerea stanga, dreapta, radacina
 
-	int countNodes(Node* n, int count);
-	int countEdges(Node* n);
-	int height(Node* node);
+	int countNodes(Node* n, int count);  //numara nodurile din copac
+	int countEdges(Node* n);  //numara legaturile dintre nodurile din copac
+	int height(Node* node);  //socoteste inaltimea copacului
 };
