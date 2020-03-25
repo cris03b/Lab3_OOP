@@ -1,3 +1,5 @@
+// lab3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
 #include "node.h"
 #include "tree.h"
 #include <iostream>
@@ -18,26 +20,26 @@ Tree::~Tree() {
 }
 
 
-void Tree::insert(Node*& n, int x, int& counter) {
+void Tree::insert(Node*& n, int x) {
 	//insereaza un nod in copac
 	if (n) {
 
 		if (n->val == x) {
-			cout << "Der Knoten existiert :D";
+			cout << "The node is already here";
 		}
 
 		else if (x < n->val) {
-			insert(n->ln, x, counter);
+			insert(n->ln, x);
 		}
 		else {
-			insert(n->rn, x, counter);
+			insert(n->rn, x);
 		}
 	}
 	else {
 		n = new Node;
 		n->val = x;
 		n->ln = n->rn = NULL;
-		counter++;
+		
 	}
 
 }
@@ -83,21 +85,21 @@ void Tree::deleteN(Node*& c, int k) {
 			if (c->ln == 0 && c->rn == 0) {
 				free(c);
 				c = NULL;
-				cout << "Knoten " << k << " wurde geloscht";
+				cout << "The node " << k << " was deleted";
 				return;
 			}
 			else if (c->ln == 0) {
 				f = c->rn;
 				free(c);
 				c = f;
-				cout << "Knoten " << k << " wurde geloscht";
+				cout << "The node " << k << " was deleted";
 				return;
 			}
 			else if (c->rn == 0) {
 				f = c->ln;
 				free(c);
 				c = f;
-				cout << "Knoten " << k << " wurde geloscht";
+				cout << "The node " << k << " was deleted";
 				return;
 			}
 			else {
@@ -112,7 +114,7 @@ void Tree::deleteN(Node*& c, int k) {
 		}
 	}
 	else {
-		cout << " Es gibt keine solche Zahl! ";
+		cout << "The node doesn't exist :( ";
 		return;
 	}
 }
